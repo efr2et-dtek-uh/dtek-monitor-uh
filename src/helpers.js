@@ -15,6 +15,7 @@ export function loadLastMessage() {
     fs.readFileSync(LAST_MESSAGE_FILE, "utf8").trim()
   )
 
+  /*
   if (lastMessage?.date) {
     const messageDay = new Date(lastMessage.date * 1000).toLocaleDateString(
       "en-CA",
@@ -29,23 +30,27 @@ export function loadLastMessage() {
       return null
     }
   }
+  */
 
   return lastMessage
 }
 
-export function saveLastMessage({ date, message_id } = {}) {
+export function saveLastMessage({ date, message_id, start_date, end_date, reason } = {}) {
   fs.mkdirSync(path.dirname(LAST_MESSAGE_FILE), { recursive: true })
   fs.writeFileSync(
     LAST_MESSAGE_FILE,
     JSON.stringify({
       message_id,
       date,
+      start_date,
+      end_date,
+      reason
     })
   )
 }
 
 export function deleteLastMessage() {
-  fs.rmdirSync(path.dirname(LAST_MESSAGE_FILE), { recursive: true })
+  fs.rmSync(path.dirname(LAST_MESSAGE_FILE), { recursive: true })
 }
 
 export function getCurrentTime() {
