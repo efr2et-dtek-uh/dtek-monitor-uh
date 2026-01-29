@@ -1,9 +1,11 @@
 name: Run power outages monitor
 
 on:
-  schedule:
-    - cron: "*/10 * * * *"
   workflow_dispatch:
+
+concurrency:
+  group: external-cron
+  cancel-in-progress: false
 
 jobs:
   monitor:
