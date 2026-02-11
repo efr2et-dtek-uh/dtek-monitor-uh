@@ -304,12 +304,12 @@ async function run() {
 
   if (isOutage) {
     message = generateOutageMessage(info)
-    await clearTGQueue()
+    //await clearTGQueue()
     await sendNotification(message, lastMessage)
   } else {
     if (checkIsLastMessage(lastMessage) && !isOutage) {
       message = generateCancelMessage(info, lastMessage)
-      await clearTGQueue()
+      //await clearTGQueue()
       await sendNotification(message, lastMessage)
       await sendCancelReplay(lastMessage)
     }
